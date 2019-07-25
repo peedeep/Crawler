@@ -1,6 +1,9 @@
 package scheduler
 
-import "crawler/engine"
+import (
+	"crawler/engine"
+	"log"
+)
 
 type QueueScheduler struct {
 	requestChan chan engine.Request
@@ -15,8 +18,8 @@ func (s *QueueScheduler) WorkerReady(w chan engine.Request) {
 	s.workerChan <- w
 }
 
-func (s *QueueScheduler) ConfigMasterWorkerChan(c chan engine.Request) {
-
+func (s *QueueScheduler) WorkerChan() chan engine.Request{
+	return make(chan engine.Request)
 }
 
 func (s *QueueScheduler) Run() {
@@ -34,12 +37,11 @@ func (s *QueueScheduler) Run() {
 			}
 			select {
 			case r := <-s.requestChan:
-				//send r to a ?worker
 				requestQ = append(requestQ, r)
 			case w := <-s.workerChan:
-				//send ?next_request to w
 				workerQ = append(workerQ, w)
 			case activeWorker <- activeRequest:
+				log.Println("activeWorker <- activeRequest")
 				requestQ = requestQ[1:]
 				workerQ = workerQ[1:]
 			}
