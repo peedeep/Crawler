@@ -21,12 +21,13 @@ func TestItemSaver(t *testing.T) {
 			Marriage: "离异",
 		},
 	}
-	err := save(expected)
+	client, err := elastic.NewClient(
+		elastic.SetSniff(false))
 	if err != nil {
 		panic(err)
 	}
-	client, err := elastic.NewClient(
-		elastic.SetSniff(false))
+	
+	err = save(client, expected, "dating_test")
 	if err != nil {
 		panic(err)
 	}
@@ -34,7 +35,7 @@ func TestItemSaver(t *testing.T) {
 	// TODO: Try to start up elastic search
 	// here using docker go client
 	result, err := client.Get().
-		Index("dating_profile").
+		Index("dating_test").
 		Type(expected.Type).
 		Id(expected.Id).
 		Do(context.Background())

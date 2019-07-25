@@ -1,7 +1,6 @@
 package engine
 
 import (
-	"crawler/fetcher"
 	"log"
 )
 
@@ -53,22 +52,12 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 	}
 }
 
-func (e *ConcurrentEngine) Worker(r Request) (ParseResult, error) {
-	log.Printf("worker Fetching %s", r.Url)
-	body, err := fetcher.Fetch(r.Url)
-	if err != nil {
-		log.Printf("Fetcher: error fetching url %s: %v", r.Url, err)
-		return ParseResult{}, err
-	}
-	return r.Parser.Parse(body, r.Url), nil
-}
-
 func (e *ConcurrentEngine) createWorker(in chan Request, out chan ParseResult, ready ReadyNotifier) {
 	go func() {
 		for {
 			ready.WorkerReady(in)
 			request := <-in
-			result, err := e.Worker(request)
+			result, err := Worker(request)
 			if err != nil {
 				continue
 			}
