@@ -1,0 +1,117 @@
+GET http://localhost:9200/peedeep/study/_search
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T024231.400.json
+
+###
+
+GET http://localhost:9200/peedeep/study/_search
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T024205.400.json
+
+###
+
+GET http://localhost:9200/peedeep/study/_search
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023604.400.json
+
+###
+
+GET http://localhost:9200/peedeep/study/_search
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023536.400.json
+
+###
+
+GET http://localhost:9200/peedeep/study/1
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023459.200.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023422.200.json
+
+###
+
+GET http://localhost:9200/peedeep/study/1
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023410.200.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+Content-Type: application/json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T023254.201.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+Content-Type: json
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T022933.400.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T022557.406.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T022546.406.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+Accept: */*
+Cache-Control: no-cache
+
+{          "name": "golang",          "instructor": "study"  }
+
+<> 2019-07-25T022445.406.json
+
+###
+
+PUT http://localhost:9200/peedeep/study/1
+Accept: */*
+Cache-Control: no-cache
+
+{     "name": "golang",     "instructor": "study" }
+
+<> 2019-07-25T022333.406.json
+
+###
+

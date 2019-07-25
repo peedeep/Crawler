@@ -1,0 +1,17 @@
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "content_type_header_exception",
+        "reason": "java.lang.IllegalArgumentException: invalid Content-Type header [json]"
+      }
+    ],
+    "type": "content_type_header_exception",
+    "reason": "java.lang.IllegalArgumentException: invalid Content-Type header [json]",
+    "caused_by": {
+      "type": "illegal_argument_exception",
+      "reason": "invalid Content-Type header [json]"
+    }
+  },
+  "status": 400
+}
