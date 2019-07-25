@@ -2,20 +2,20 @@ package persist
 
 import (
 	"context"
-	"fmt"
+	"crawler/engine"
 	"github.com/olivere/elastic"
 	"log"
 )
 
-func ItemSaver() chan interface{} {
-	out := make(chan interface{})
+func ItemSaver() chan engine.Item {
+	out := make(chan engine.Item)
 	go func() {
 		itemCount := 0
 		for {
 			item := <-out
 			log.Printf("Item saver: got item #%d: %v", itemCount, item)
 			itemCount++
-			_, err := save(item)
+			err := save(item)
 			if err != nil {
 				log.Printf("Item saver: error saveing item %v: %v", item, err)
 			}
@@ -24,21 +24,21 @@ func ItemSaver() chan interface{} {
 	return out
 }
 
-func save(item interface{}) (string, error) {
+func save(item engine.Item) error {
 	client, err := elastic.NewClient(
 		elastic.SetSniff(false))
 	if err != nil {
-		return "", nil
+		return err
 	}
-	resp, err := client.Index().
+	_, err = client.Index().
 		Index("dating_profile").
-		Type("zhenai").
+		Type(item.Type).
+		Id(item.Id).
 		BodyJson(item).
 		Do(context.Background())
 	if err != nil {
-		return "", nil
+		return err
 	}
 
-	fmt.Println(resp)
-	return resp.Id, nil
+	return nil
 }
