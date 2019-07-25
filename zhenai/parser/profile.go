@@ -23,7 +23,9 @@ func ParseProfile(url string, contents []byte, name string) engine.ParseResult {
 		profile.Name = name
 		profile.Income = string(matches[1])
 		result.Items = append(result.Items, engine.Item{
-			Id:string(matches[1]),
+			Url:     url,
+			Id:      string(matches[1]),
+			Type:    "zhenai",
 			Payload: profile,
 		})
 	}

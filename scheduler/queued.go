@@ -2,7 +2,6 @@ package scheduler
 
 import (
 	"crawler/engine"
-	"log"
 )
 
 type QueueScheduler struct {
@@ -41,7 +40,6 @@ func (s *QueueScheduler) Run() {
 			case w := <-s.workerChan:
 				workerQ = append(workerQ, w)
 			case activeWorker <- activeRequest:
-				log.Println("activeWorker <- activeRequest")
 				requestQ = requestQ[1:]
 				workerQ = workerQ[1:]
 			}
