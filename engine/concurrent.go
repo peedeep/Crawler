@@ -8,6 +8,7 @@ import (
 type ConcurrentEngine struct {
 	Scheduler   Scheduler
 	WorkerCount int
+	ItemChan    chan interface{}
 }
 
 type Scheduler interface {
@@ -39,8 +40,9 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 	for {
 		result := <-out
 		for _, item := range result.Items {
-			itemCount++
+			go func() { e.ItemChan <- item }()
 			log.Printf("Got item #%d: %v", itemCount, item)
+			itemCount++
 		}
 		for _, request := range result.Requests {
 			if isDuplicated(request.Url) {
@@ -52,7 +54,7 @@ func (e *ConcurrentEngine) Run(seeds ...Request) {
 }
 
 func (e *ConcurrentEngine) Worker(r Request) (ParseResult, error) {
-	log.Printf("requests size Fetching %s", r.Url)
+	log.Printf("worker Fetching %s", r.Url)
 	body, err := fetcher.Fetch(r.Url)
 	if err != nil {
 		log.Printf("Fetcher: error fetching url %s: %v", r.Url, err)

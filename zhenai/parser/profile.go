@@ -19,7 +19,7 @@ func ParseProfile(url string, contents []byte, name string) engine.ParseResult {
 	matches := infoRe.FindSubmatch(contents)
 	result := engine.ParseResult{}
 	if matches != nil {
-		log.Printf("parse profile info: %s, %s", name, matches[1])
+		//log.Printf("parse profile info: %s, %s", name, matches[1])
 		profile.Name = name
 		profile.Income = string(matches[1])
 		result.Items = append(result.Items, engine.Item{
