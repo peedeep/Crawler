@@ -63,7 +63,7 @@ func (h SearchResultHandler) getSearchResult(q string, from int) (model.SearchRe
 	resp, err := h.client.
 		Search("dating_profile").
 		Type("zhenai").
-		Query(elastic.NewQueryStringQuery(q)).
+		Query(elastic.NewQueryStringQuery(rewriteQueryString(q))).
 		From(from).
 		Do(context.Background())
 
