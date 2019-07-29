@@ -3,7 +3,7 @@ package persist
 import (
 	"context"
 	"crawler/engine"
-	"github.com/olivere/elastic"
+	"github.com/olivere/elastic.v7"
 	"log"
 )
 

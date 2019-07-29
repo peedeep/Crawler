@@ -5,7 +5,7 @@ import (
 	"crawler/engine"
 	"crawler/fronted/model"
 	"crawler/fronted/view"
-	"github.com/olivere/elastic"
+	"github.com/olivere/elastic.v7"
 	"log"
 	"net/http"
 	"reflect"
