@@ -8,8 +8,7 @@ import (
 )
 
 func ItemSaver(index string) (chan engine.Item, error) {
-	client, err := elastic.NewClient(
-		elastic.SetSniff(false))
+	client, err := elastic.NewClient(elastic.SetSniff(false))
 	if err != nil {
 		return nil, err
 	}
@@ -20,7 +19,7 @@ func ItemSaver(index string) (chan engine.Item, error) {
 			item := <-out
 			log.Printf("Item saver: got item #%d: %v", itemCount, item)
 			itemCount++
-			err := save(client, item, index)
+			err := Save(client, item, index)
 			if err != nil {
 				log.Printf("Item saver: error saveing item %v: %v", item, err)
 			}
@@ -29,7 +28,7 @@ func ItemSaver(index string) (chan engine.Item, error) {
 	return out, nil
 }
 
-func save(client *elastic.Client, item engine.Item, index string) error {
+func Save(client *elastic.Client, item engine.Item, index string) error {
 	_, err := client.Index().
 		Index(index).
 		Type(item.Type).

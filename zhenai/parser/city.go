@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"crawler/distribute/config"
 	"crawler/engine"
 	"log"
 	"regexp"
@@ -26,7 +27,7 @@ func ParseCity(contents []byte, url string) engine.ParseResult {
 	for _, m := range matches {
 		result.Requests = append(result.Requests, engine.Request{
 			Url:    string(m[1]),
-			Parser: NewFuncParser(ParseCity, "ParseCity"),
+			Parser: NewFuncParser(ParseCity, config.ParseCity),
 		})
 	}
 	log.Printf("parse city result size: %d", len(result.Requests))
