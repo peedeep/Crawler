@@ -3,20 +3,39 @@ package main
 import (
 	"crawler/distribute/config"
 	itemsaver "crawler/distribute/persist/client"
+	"crawler/distribute/rpcsupport"
 	worker "crawler/distribute/worker/client"
 	"crawler/engine"
 	"crawler/scheduler"
 	"crawler/zhenai/parser"
+	"flag"
 	"fmt"
+	"log"
+	"net/rpc"
+	"strings"
+)
+
+var (
+	itemSaverHost = flag.String("itemSaverHost", "", "item saver host")
+	workerHosts   = flag.String("workerHosts", "", "worker hosts(comma separated)")
 )
 
 func main() {
-	itemChan, err := itemsaver.ItemSaver(fmt.Sprintf(":%d", config.ItemSaverPort))
+	flag.Parse()
+	if *itemSaverHost == "" || *workerHosts == "" {
+		fmt.Println("Port must be specified.")
+		return
+	}
+
+	// fmt.Sprintf(":%d", config.ItemSaverPort)
+	itemChan, err := itemsaver.ItemSaver(*itemSaverHost)
 	if err != nil {
 		panic(err)
 	}
 
-	processor, err := worker.CreateProcessor()
+	//processor, err := worker.CreateProcessor()
+	pool := createClientPool(strings.Split(*workerHosts, ","))
+	processor, err := worker.CreateProcessors(pool)
 	if err != nil {
 		panic(err)
 	}
@@ -35,5 +54,26 @@ func main() {
 		Url:    "http://www.zhenai.com/zhenghun/nanchang",
 		Parser: parser.NewFuncParser(parser.ParseCity, config.ParseCity),
 	})
+}
 
+func createClientPool(hosts []string) chan *rpc.Client {
+	var clients []*rpc.Client
+	for _, h := range hosts {
+		client, err := rpcsupport.NewClient(h)
+		if err != nil {
+			log.Printf("Error connecting to %s: %v", h, client)
+		} else {
+			clients = append(clients, client)
+			log.Printf("Connected to %s", h)
+		}
+	}
+	out := make(chan *rpc.Client)
+	go func() {
+		for {
+			for _, client := range clients {
+				out <- client
+			}
+		}
+	}()
+	return out
 }
