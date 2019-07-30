@@ -2,7 +2,8 @@ package main
 
 import (
 	"crawler/distribute/config"
-	"crawler/distribute/persist/client"
+	itemsaver "crawler/distribute/persist/client"
+	worker "crawler/distribute/worker/client"
 	"crawler/engine"
 	"crawler/scheduler"
 	"crawler/zhenai/parser"
@@ -10,14 +11,21 @@ import (
 )
 
 func main() {
-	itemChan, err := client.ItemSaver(fmt.Sprintf(":%d", config.ItemSaverPort))
+	itemChan, err := itemsaver.ItemSaver(fmt.Sprintf(":%d", config.ItemSaverPort))
 	if err != nil {
 		panic(err)
 	}
+
+	processor, err := worker.CreateProcessor()
+	if err != nil {
+		panic(err)
+	}
+
 	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.SimpleScheduler{},
-		WorkerCount: 100,
-		ItemChan:    itemChan,
+		Scheduler:        &scheduler.QueueScheduler{},
+		WorkerCount:      100,
+		ItemChan:         itemChan,
+		RequestProcessor: processor,
 	}
 	//e.Run(engine.Request{
 	//	Url:    "https://www.zhenai.com/zhenghun",

@@ -7,14 +7,14 @@ type Parser interface {
 	Serialize() SerializedParser
 }
 
-type Request struct {
-	Url 	string
-	Parser 	Parser
-}
-
 type ParseResult struct {
 	Requests []Request
 	Items	 []Item
+}
+
+type Request struct {
+	Url 	string
+	Parser 	Parser
 }
 
 type Item struct {

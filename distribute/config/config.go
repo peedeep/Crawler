@@ -1,7 +1,10 @@
 package config
 
 const (
+	// Service ports
 	ItemSaverPort = 1234
+	WorkerPort0   = 9000
+
 	// Elastic search
 	ElasticIndex = "dating_profile"
 

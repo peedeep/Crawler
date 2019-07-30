@@ -20,10 +20,10 @@ type Profile struct {
 
 func FromJsonOjb(o interface{}) (Profile, error) {
 	var profile Profile
-	s, err := json.Marshal(o)
+	bytes, err := json.Marshal(o)
 	if err != nil {
 		return profile, err
 	}
-	err = json.Unmarshal(s, &profile)
+	err = json.Unmarshal(bytes, &profile)
 	return profile, err
 }
