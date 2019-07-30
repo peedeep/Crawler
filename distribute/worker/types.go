@@ -9,34 +9,19 @@ import (
 	"log"
 )
 
-type SerializedParser struct {
-	Name string
-	Args interface{}
-}
-
-type Request struct {
-	Url    string
-	Parser SerializedParser
-}
-
-type ParseResult struct {
-	Requests []Request
-	Items    []engine.Item
-}
-
-func SerializeRequest(r engine.Request) Request {
+func SerializeRequest(r engine.Request) engine.SerializedRequest {
 	serialize := r.Parser.Serialize()
-	return Request{
+	return engine.SerializedRequest{
 		Url: r.Url,
-		Parser: SerializedParser{
+		Parser: engine.SerializedParser{
 			Name: serialize.Name,
 			Args: serialize.Args,
 		},
 	}
 }
 
-func SerializeResult(r engine.ParseResult) ParseResult {
-	result := ParseResult{
+func SerializeResult(r engine.ParseResult) engine.SerializedParseResult {
+	result := engine.SerializedParseResult{
 		Items: r.Items,
 	}
 	for _, req := range r.Requests {
@@ -45,7 +30,7 @@ func SerializeResult(r engine.ParseResult) ParseResult {
 	return result
 }
 
-func DeserializeRequest(r Request) (engine.Request, error) {
+func DeserializeRequest(r engine.SerializedRequest) (engine.Request, error) {
 	p, err := deserializeParser(r.Parser)
 	if err != nil {
 		return engine.Request{}, err
@@ -56,7 +41,7 @@ func DeserializeRequest(r Request) (engine.Request, error) {
 	}, nil
 }
 
-func DeserializeResult(r ParseResult) (engine.ParseResult, error) {
+func DeserializeResult(r engine.SerializedParseResult) (engine.ParseResult, error) {
 	result := engine.ParseResult{
 		Items: r.Items,
 	}
@@ -71,7 +56,7 @@ func DeserializeResult(r ParseResult) (engine.ParseResult, error) {
 	return result, nil
 }
 
-func deserializeParser(p SerializedParser) (engine.Parser, error) {
+func deserializeParser(p engine.SerializedParser) (engine.Parser, error) {
 	switch p.Name {
 	case config.ParseCityList:
 		return parser.NewFuncParser(parser.ParseCityList, config.ParseCityList), nil

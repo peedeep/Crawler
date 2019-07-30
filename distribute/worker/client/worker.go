@@ -16,7 +16,7 @@ func CreateProcessor() (engine.Processor, error) {
 	}
 	return func(req engine.Request) (engine.ParseResult, error) {
 		sReq := worker.SerializeRequest(req)
-		var sResult worker.ParseResult
+		var sResult engine.SerializedParseResult
 		// TODO call rpc to craw data
 		err := client.Call(config.CrawlServiceRpc, sReq, &sResult)
 		if err != nil {
@@ -29,7 +29,7 @@ func CreateProcessor() (engine.Processor, error) {
 func CreateProcessors(clientChan chan *rpc.Client) (engine.Processor, error) {
 	return func(req engine.Request) (engine.ParseResult, error) {
 		sReq := worker.SerializeRequest(req)
-		var sResult worker.ParseResult
+		var sResult engine.SerializedParseResult
 		// TODO call rpc to craw data
 		client := <-clientChan
 		err := client.Call(config.CrawlServiceRpc, sReq, &sResult)

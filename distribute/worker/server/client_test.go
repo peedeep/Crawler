@@ -4,6 +4,7 @@ import (
 	"crawler/distribute/config"
 	"crawler/distribute/rpcsupport"
 	"crawler/distribute/worker"
+	"crawler/engine"
 	"fmt"
 	"testing"
 	"time"
@@ -19,14 +20,14 @@ func TestCrawlService(t *testing.T) {
 		panic(err)
 	}
 
-	req := worker.Request{
+	req := engine.SerializedRequest{
 		Url: "http://album.zhenai.com/u/81397582",
-		Parser: worker.SerializedParser{
+		Parser: engine.SerializedParser{
 			Name: config.ParseProfile,
 			Args: "安静的雪",
 		},
 	}
-	var result worker.ParseResult
+	var result engine.SerializedParseResult
 	err = client.Call(config.CrawlServiceRpc, req, &result)
 	if err != nil {
 		t.Errorf("err: %v", err)
