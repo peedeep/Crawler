@@ -10,7 +10,7 @@ import (
 	"log"
 )
 
-var port = flag.Int("port", 0, "The port for itemsaver server to listen on.")
+var port = flag.Int("port", 1234, "The port for itemsaver server to listen on.")
 
 func main() {
 	flag.Parse()
