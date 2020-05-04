@@ -11,7 +11,6 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"net/url"
 	"time"
 )
 
@@ -21,21 +20,21 @@ var proxyIps = []string{"39.137.69.7:8080"}
 
 func Fetch(fetchUrl string) ([]byte, error) {
 	<-rateLimiter
-	proxy, err := url.Parse(fmt.Sprintf("http://%s", proxyIps[rand.Intn(len(proxyIps))]))
-	if err != nil {
-		log.Println(err)
-	}
-	log.Printf("proxy: %s", proxy)
-	transport := &http.Transport{
+	//proxy, err := url.Parse(fmt.Sprintf("http://%s", proxyIps[rand.Intn(len(proxyIps))]))
+	//if err != nil {
+	//	log.Println(err)
+	//}
+	//log.Printf("proxy: %s", proxy)
+	//transport := &http.Transport{
 		//TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		//ProxyConnectHeader: http.Header{
 		//	"Naiba": []string{"lifelonglearning"},
 		//},
-		Proxy: http.ProxyURL(proxy),
-	}
+		//Proxy: http.ProxyURL(proxy),
+	//}
 	client := &http.Client{
 		Timeout:   time.Second * 10,
-		Transport: transport,
+		//Transport: transport,
 	}
 	req, err := http.NewRequest("GET", fetchUrl, nil)
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36")

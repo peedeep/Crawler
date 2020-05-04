@@ -1,6 +1,7 @@
 package main
 
 import (
+	parser2 "crawler/dytt/parser"
 	"crawler/engine"
 	"crawler/persist"
 	"crawler/scheduler"
@@ -8,7 +9,7 @@ import (
 )
 
 func main() {
-	itemChan, err := persist.ItemSaver("dating_profile")
+	itemChan, err := persist.ItemSaver("dating_movie")
 	if err != nil {
 		panic(err)
 	}
@@ -23,8 +24,8 @@ func main() {
 	//	Parser: parser.NewFuncParser(parser.ParseCityList, "ParseCityList"),
 	//})
 	e.Run(engine.Request{
-		Url:    "http://www.zhenai.com/zhenghun/shanghai",
-		Parser: parser.NewFuncParser(parser.ParseCity, "ParseCity"),
+		Url:    "https://www.dytt8.net/",
+		Parser: parser.NewFuncParser(parser2.ParseMovieList, "ParseMovieList"),
 	})
 
 }
