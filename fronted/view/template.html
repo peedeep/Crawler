@@ -28,16 +28,10 @@
                     <tr>
                         <td><a href="{{.Url}}">{{.Payload.Name}}</a></td>
                         {{with .Payload}}
-                        <td>{{.Gender}}</td>
-                        <td>{{.Age}}</td>
-                        <td>{{.Height}}cm</td>
-                        <td>{{.Weight}}kg</td>
-                        <td>{{.Income}}</td>
-                        <td>{{.Education}}</td>
-                        <td>{{.Occupation}}</td>
-                        <td>{{.Hokou}}</td>
-                        <td>{{.House}}</td>
-                        <td>{{.Car}}</td>
+                        <td>年代：{{.Years}}</td>
+                        <td>产地：{{.Origin}}</td>
+                        <td>上映日期：{{.Date}}</td>
+                        <td>豆瓣评分：{{.Score}}</td>
                         {{end}}
                     </tr>
                     {{else}}
