@@ -3,8 +3,11 @@ package model
 import "encoding/json"
 
 type Movie struct {
-	Name string
-	Time string
+	Name   string
+	Years  string
+	Origin string
+	Date   string
+	Score  string
 }
 
 func fromJsonObj(o interface{}) (Movie, error) {

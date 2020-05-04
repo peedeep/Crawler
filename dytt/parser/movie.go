@@ -18,20 +18,27 @@ import (
 // ◎豆瓣评分　7.1/10 from 111 users
 
 var (
-    movieIdUrlRe = regexp.MustCompile(`https://www.dytt8.net/html/gndy/dyzz/[\d]+/([0-9]+).html`)
-	movieNameRe = regexp.MustCompile(`译[^名<]*名　([^<]+) <br />`)
-	movieTimeRe = regexp.MustCompile(`年[^代<]*代　([\d]+) <br />`)
+	movieIdUrlRe  = regexp.MustCompile(`https://www.dytt8.net/html/gndy/dyzz/[\d]+/([0-9]+).html`)
+	movieNameRe   = regexp.MustCompile(`译[^名<]*名　([^<]+) <br />[^年]*年[^代<]*代　([\d]+) <br />[^产]*产[^地<]*地　([^<]+) <br />[^上]*上映日期　([^<]+) <br />`)
+	movieOriginRe = regexp.MustCompile(`豆瓣评分　([^<]+) <br />`)
 )
 
 func ParseMovie(contents []byte, url string) engine.ParseResult {
 	result := engine.ParseResult{}
 	name := movieNameRe.FindSubmatch(contents)
-	time := movieTimeRe.FindSubmatch(contents)
+	origin := movieOriginRe.FindSubmatch(contents)
 
-	if name != nil && len(name) > 1 && time != nil && len(time) > 1 {
+	if name != nil && len(name) > 4 {
+		var s string
+		if origin != nil && len(origin) > 1 {
+			s = string(origin[1])
+		}
 		movie := model.Movie{
-			Name: string(name[1]),
-			Time: string(time[1]),
+			Name:   string(name[1]),
+			Years:  string(name[2]),
+			Origin: string(name[3]),
+			Date:   string(name[4]),
+			Score:  s,
 		}
 		result.Items = append(result.Items, engine.Item{
 			Url:     url,
