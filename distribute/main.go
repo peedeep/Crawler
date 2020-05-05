@@ -1,10 +1,10 @@
 package main
 
 import (
-	"crawler/distribute/config"
 	itemsaver "crawler/distribute/persist/client"
 	"crawler/distribute/rpcsupport"
 	worker "crawler/distribute/worker/client"
+	parser2 "crawler/dytt/parser"
 	"crawler/engine"
 	"crawler/scheduler"
 	"crawler/zhenai/parser"
@@ -51,8 +51,8 @@ func main() {
 	//	Parser: parser.NewFuncParser(parser.ParseCityList, "ParseCityList"),
 	//})
 	e.Run(engine.Request{
-		Url:    "http://www.zhenai.com/zhenghun/nanchang",
-		Parser: parser.NewFuncParser(parser.ParseCity, config.ParseCity),
+		Url:    "https://www.dytt8.net/",
+		Parser: parser.NewFuncParser(parser2.ParseMovieList, "ParseMovieList"),
 	})
 }
 
