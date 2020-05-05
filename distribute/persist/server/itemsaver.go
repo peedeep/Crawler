@@ -6,7 +6,7 @@ import (
 	"crawler/distribute/rpcsupport"
 	"flag"
 	"fmt"
-	"github.com/olivere/elastic.v7"
+	"github.com/olivere/elastic/v7"
 	"log"
 )
 

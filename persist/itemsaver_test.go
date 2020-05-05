@@ -5,7 +5,7 @@ import (
 	"crawler/engine"
 	"crawler/model"
 	"encoding/json"
-	"github.com/olivere/elastic.v7"
+	"github.com/olivere/elastic/v7"
 	"testing"
 )
 
