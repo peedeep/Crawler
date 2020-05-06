@@ -6,13 +6,15 @@ const (
 	WorkerPort0   = 9000
 
 	// Elastic search
-	ElasticIndex = "dating_profile"
+	ElasticIndex = "dating_movie"
 
 	// RPC endpoints
 	ItemSaverRpc    = "ItemSaverService.Save"
 	CrawlServiceRpc = "CrawlService.Process"
 
 	// Parser names
+	ParseMovie = "ParseMovie"
+	ParseMovieList = "ParseMovieList"
 	ParseCityList = "ParseCityList"
 	ParseCity     = "ParseCity"
 	ParseProfile  = "ParseProfile"

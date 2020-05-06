@@ -2,6 +2,7 @@ package worker
 
 import (
 	"crawler/distribute/config"
+	parser2 "crawler/dytt/parser"
 	"crawler/engine"
 	"crawler/zhenai/parser"
 	"errors"
@@ -58,6 +59,10 @@ func DeserializeResult(r engine.SerializedParseResult) (engine.ParseResult, erro
 
 func deserializeParser(p engine.SerializedParser) (engine.Parser, error) {
 	switch p.Name {
+	case config.ParseMovie:
+		return parser.NewFuncParser(parser2.ParseMovie, config.ParseMovie), nil
+	case config.ParseMovieList:
+		return parser.NewFuncParser(parser2.ParseMovieList, config.ParseMovieList), nil
 	case config.ParseCityList:
 		return parser.NewFuncParser(parser.ParseCityList, config.ParseCityList), nil
 	case config.ParseCity:
