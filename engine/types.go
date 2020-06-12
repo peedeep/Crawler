@@ -32,6 +32,30 @@ func (i *Item)FromJsonObj(o interface{}) error {
 	return err
 }
 
+type ParserFunc func(contents []byte, url string) ParseResult
+
+type FuncParser struct {
+	parser ParserFunc
+	name   string
+}
+
+func (f *FuncParser) Parse(contents []byte, url string) ParseResult {
+	return f.parser(contents, url)
+}
+
+func (f *FuncParser) Serialize() SerializedParser {
+	return SerializedParser{
+		f.name, nil,
+	}
+}
+
+func NewFuncParser(parser ParserFunc, name string) *FuncParser {
+	return &FuncParser{
+		parser: parser,
+		name:   name,
+	}
+}
+
 type NilParser struct {}
 
 func (NilParser) Parse(contents []byte, url string) ParseResult {

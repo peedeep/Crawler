@@ -2,9 +2,9 @@ package worker
 
 import (
 	"crawler/distribute/config"
-	parser2 "crawler/dytt/parser"
 	"crawler/engine"
-	"crawler/zhenai/parser"
+	"crawler/parser/dytt"
+	"crawler/parser/zhenai"
 	"errors"
 	"fmt"
 	"log"
@@ -60,16 +60,16 @@ func DeserializeResult(r engine.SerializedParseResult) (engine.ParseResult, erro
 func deserializeParser(p engine.SerializedParser) (engine.Parser, error) {
 	switch p.Name {
 	case config.ParseMovieList:
-		return parser.NewFuncParser(parser2.ParseMovieList, config.ParseMovieList), nil
+		return engine.NewFuncParser(dytt.ParseMovieList, config.ParseMovieList), nil
 	case config.ParseMovie:
-		return parser.NewFuncParser(parser2.ParseMovie, config.ParseMovie), nil
+		return engine.NewFuncParser(dytt.ParseMovie, config.ParseMovie), nil
 	case config.ParseCityList:
-		return parser.NewFuncParser(parser.ParseCityList, config.ParseCityList), nil
+		return engine.NewFuncParser(zhenai.ParseCityList, config.ParseCityList), nil
 	case config.ParseCity:
-		return parser.NewFuncParser(parser.ParseCity, config.ParseCity), nil
+		return engine.NewFuncParser(zhenai.ParseCity, config.ParseCity), nil
 	case config.ParseProfile:
 		if userName, ok := p.Args.(string); ok {
-			return parser.NewProfileParser(userName), nil
+			return zhenai.NewProfileParser(userName), nil
 		}
 		return nil, fmt.Errorf("invalid arg: %v", p.Args)
 	case config.NilParser:

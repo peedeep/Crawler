@@ -1,8 +1,7 @@
-package parser
+package dytt
 
 import (
 	"crawler/engine"
-	"crawler/zhenai/parser"
 	"log"
 	"regexp"
 )
@@ -18,7 +17,7 @@ func ParseMovieList(contents []byte, url string) engine.ParseResult {
 	for _, m := range all {
 		result.Requests = append(result.Requests, engine.Request{
 			Url:    "https://www.dytt8.net" + string(m[1]),
-			Parser: parser.NewFuncParser(ParseMovie, "ParseMovie"),
+			Parser: engine.NewFuncParser(ParseMovie, "ParseMovie"),
 		})
 	}
 	log.Printf("ParseMovieList found: %d\n", len(all))

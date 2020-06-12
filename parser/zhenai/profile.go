@@ -1,4 +1,4 @@
-package parser
+package zhenai
 
 import (
 	"crawler/engine"

@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f6f9b06-9600-4e9b-83b4-cbf5d1f9b03f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/parser/zhenai/types.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distribute/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/distribute/config/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/distribute/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/distribute/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/distribute/worker/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/distribute/worker/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fronted/view/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/fronted/view/template.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dytt/parser/moiveList.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/dytt/moiveList.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dytt/parser/movie.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/dytt/movie.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/engine/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fronted/controller/searchresult.go" beforeDir="false" afterPath="$PROJECT_DIR$/fronted/controller/searchresult.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/city.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/city.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/cityList.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/cityList.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/cityList_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/cityList_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/citylist_test_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/citylist_test_data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/profile.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/profile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/profile_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/profile_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/profile_test_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/zhenai/profile_test_data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zhenai/parser/types.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,20 +83,22 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Go\MyGo\src\crawler\dytt\parser" />
-      <recent name="D:\Go\MyGo\src\crawler\distribute" />
-      <recent name="D:\Go\MyGo\src\crawler\fronted\view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Go\MyGo\src\crawler\distribute" />
       <recent name="D:\Go\MyGo\src\crawler\rpcsupport" />
       <recent name="D:\Go\MyGo\src\crawler\fronted" />
       <recent name="D:\Go\MyGo\src\crawler" />
       <recent name="D:\Go\MyGo\src\crawler\zhenai\parser" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code\Go\crawler\parser\zhenai" />
+      <recent name="D:\Code\Go\crawler\parser\dytt" />
+      <recent name="D:\Code\Go\crawler\parser" />
+      <recent name="D:\Go\MyGo\src\crawler\dytt\parser" />
+      <recent name="D:\Go\MyGo\src\crawler\distribute" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -239,7 +254,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build crawler/distribute">
+  <component name="RunManager" selected="Go Build.go build crawler">
     <configuration name="go build crawler" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="crawler" />
       <working_directory value="$PROJECT_DIR$" />
@@ -276,22 +291,29 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build crawler/fronted" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build starter.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="crawler" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
+      <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/fronted/starter.go" />
-      <package value="crawler/fronted" />
+      <package value="crawler" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build crawler/distribute" />
+      <item itemvalue="Go Build.go build crawler/distribute/persist/server" />
+      <item itemvalue="Go Build.go build crawler/distribute/worker/server" />
+      <item itemvalue="Go Build.go build starter.go" />
+      <item itemvalue="Go Build.go build crawler" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build crawler" />
+        <item itemvalue="Go Build.go build starter.go" />
         <item itemvalue="Go Build.go build crawler/distribute" />
         <item itemvalue="Go Build.go build crawler/distribute/worker/server" />
         <item itemvalue="Go Build.go build crawler/distribute/persist/server" />
-        <item itemvalue="Go Build.go build crawler/fronted" />
-        <item itemvalue="Go Build.go build crawler" />
       </list>
     </recent_temporary>
   </component>
@@ -349,6 +371,18 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
@@ -361,25 +395,44 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1588683176581" />
-    <state width="1493" height="263" key="GridCell.Tab.0.bottom" timestamp="1588687891457">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom" timestamp="1591770764885">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="263" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1588687891457" />
-    <state width="1493" height="263" key="GridCell.Tab.0.center" timestamp="1588687891456">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1591770764885" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center" timestamp="1591770764885">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="263" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1588687891456" />
-    <state width="1493" height="263" key="GridCell.Tab.0.left" timestamp="1588687891456">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1591770764885" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left" timestamp="1591770764885">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="263" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1588687891456" />
-    <state width="1493" height="263" key="GridCell.Tab.0.right" timestamp="1588687891457">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1591770764885" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right" timestamp="1591770764885">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1493" height="263" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1588687891457" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1591770764885" />
     <state x="270" y="77" key="SettingsEditor" timestamp="1588683205825">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="270" y="77" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1588683205825" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

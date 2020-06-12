@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"crawler/distribute/config"
 	"crawler/engine"
 	"crawler/fronted/model"
 	"crawler/fronted/view"
@@ -56,14 +57,15 @@ func (h SearchResultHandler) ServeHTTP(w http.ResponseWriter, req *http.Request)
 const pageSize = 10
 
 func (h SearchResultHandler) getSearchResult(q string, from int) (model.SearchResult, error) {
-	log.Printf("get result %s, %d", q, from)
 	var result model.SearchResult
 	result.Query = q
 
+	s := rewriteQueryString(q)
+	log.Printf("get result %s, %d, %s", q, from, s)
 	resp, err := h.client.
-		Search("dating_movie").
+		Search(config.ElasticIndex).
 		Type("dytt").
-		Query(elastic.NewQueryStringQuery(rewriteQueryString(q))).
+		Query(elastic.NewQueryStringQuery(s)).
 		From(from).
 		Do(context.Background())
 

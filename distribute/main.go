@@ -4,10 +4,9 @@ import (
 	itemsaver "crawler/distribute/persist/client"
 	"crawler/distribute/rpcsupport"
 	worker "crawler/distribute/worker/client"
-	parser2 "crawler/dytt/parser"
 	"crawler/engine"
+	"crawler/parser/dytt"
 	"crawler/scheduler"
-	"crawler/zhenai/parser"
 	"flag"
 	"fmt"
 	"log"
@@ -52,7 +51,7 @@ func main() {
 	//})
 	e.Run(engine.Request{
 		Url:    "https://www.dytt8.net/",
-		Parser: parser.NewFuncParser(parser2.ParseMovieList, "ParseMovieList"),
+		Parser: engine.NewFuncParser(dytt.ParseMovieList, "ParseMovieList"),
 	})
 }
 

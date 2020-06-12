@@ -1,4 +1,4 @@
-package parser
+package zhenai
 
 import (
 	"crawler/distribute/config"
@@ -27,7 +27,7 @@ func ParseCity(contents []byte, url string) engine.ParseResult {
 	for _, m := range matches {
 		result.Requests = append(result.Requests, engine.Request{
 			Url:    string(m[1]),
-			Parser: NewFuncParser(ParseCity, config.ParseCity),
+			Parser: engine.NewFuncParser(ParseCity, config.ParseCity),
 		})
 	}
 	log.Printf("parse city result size: %d", len(result.Requests))

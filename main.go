@@ -1,11 +1,10 @@
 package main
 
 import (
-	parser2 "crawler/dytt/parser"
 	"crawler/engine"
+	"crawler/parser/dytt"
 	"crawler/persist"
 	"crawler/scheduler"
-	"crawler/zhenai/parser"
 )
 
 func main() {
@@ -25,7 +24,7 @@ func main() {
 	//})
 	e.Run(engine.Request{
 		Url:    "https://www.dytt8.net/",
-		Parser: parser.NewFuncParser(parser2.ParseMovieList, "ParseMovieList"),
+		Parser: engine.NewFuncParser(dytt.ParseMovieList, "ParseMovieList"),
 	})
 
 }
